@@ -1,23 +1,39 @@
-def gd(n):
-    s= input()
-    ap,bp=0,0
-    ar,br=n,n
-    for i in range(2*n):
-        if i%2 == 0:
-            ar-=1
-            if s[i] == '1':
-                ap+=1
-        else:
-            br-=1
-            if s[i] == '1':
-                bp+=1
-
-        if ap> bp+br or bp> ap+ar :
-            return(i+1)
-    return(2*n)
-
 for _ in range(int(input())):
-    n= int(input())
-    print(gd(n))
+    n = str(input())
+    if n[0] == '2':
+        print(0)
+        continue
+    else:
+        arr=[]
+        arr.append(n[0])
+        count,maxseq,pos_maxseq,depth,fpos=0,0,0,1,0
+        for i in range(1,len(n)):
+            if n[i]=='2' and len(arr)==0:
+                break
+            if n[i]=='1':
+                arr.append(n[i])
+            elif len(arr)!=0:
+                arr.pop()
+                count+=2
+            if len(arr)==0:
+                if count>maxseq:
+                    maxseq=count
+                    count=0
+                    pos_maxseq=i-maxseq+2
+                else:
+                    count=0
+            if len(arr)>depth:
+                depth=len(arr)
+                fpos=i+1 
+    print(depth,fpos,maxseq,pos_maxseq)
+
+
+
     
-    
+        
+
+
+
+
+
+

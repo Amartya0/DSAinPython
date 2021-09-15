@@ -1,30 +1,23 @@
-def golecount(a):
-    count = 0
-    for i in range(len(a)):
-        if a[i] == 1:
-            count += 1
-    return count
+def gd(n):
+    s= input()
+    ap,bp=0,0
+    ar,br=n,n
+    for i in range(2*n):
+        if i%2 == 0:
+            ar-=1
+            if s[i] == '1':
+                ap+=1
+        else:
+            br-=1
+            if s[i] == '1':
+                bp+=1
+
+        if ap> bp+br or bp> ap+ar :
+            return(i+1)
+    return(2*n)
 
 for _ in range(int(input())):
-    n=int(input())
-    s=int(input())
-    a,b=[],[]
-    i=1
-    revs=0
-    while(s>0):
-        revs=revs*10+s%10
-        s=s//10
-    while(revs>0):
-        if i%2!=0:
-            a.append(revs%10)
-        else:
-            b.append(revs%10)
-            if golecount(a)-golecount(b)>2*n-i:
-                print(i-1)
-                break
-        revs=revs//10
-        i+=1
-
-    
+    n= int(input())
+    print(gd(n))
     
 
