@@ -1,17 +1,21 @@
 m=int(input())
 n=list(map(int,input().split()))
 arr=[]
-arr.append(n[0])
-count,maxseq,pos_maxseq,depth,fpos=0,0,0,1,0
-for i in range(1,len(n)):
-    if n[i]=='2' and len(arr)==0:
+count,maxseq,pos_maxseq,cur_depth,depth,fpos=0,0,0,0,0,0
+for i in range(0,m):
+    if n[i]==2 and len(arr)==0:
         break
-    if n[i]=='1':
+    if n[i]==1:
         arr.append(n[i])
     elif len(arr)!=0:
         arr.pop()
         count+=2
+        if len(arr)>cur_depth:
+            cur_depth=len(arr)+1
     if len(arr)==0:
+        if cur_depth>depth:
+            depth=cur_depth
+            fpos=i-depth
         if count>maxseq:
             maxseq=count
             count=0
